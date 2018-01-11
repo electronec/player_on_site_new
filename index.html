@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>json example</title>
+    <script src="bradmax_player.js" type="text/javascript"></script>
+    <style>
+      #player {
+	margin: auto;
+	width: 640px; 
+	height: 360px;
+        box-shadow: 0 0 40px rgba(83,106,166,0.9); /* Параметры тени */
+      }
+      body {
+        background: #37455b;
+        color: #cedbf0;
+<!--    background-image: url(background.jpg);-->
+      }
+      h1 {
+        color: cyan;
+	text-align: center;
+      }
+      h2 {
+        color: lightgrey;
+	text-align: center;
+        }
+      .note {
+	text-align: center;
+	margin-top:40px;
+	font-family: sans-serif, Arial;
+	}
+      table {
+        border: 2px solid yellow;
+        padding-left: 20px;
+        }
+    </style>
+</head>
+
+  <body>
+	<br><h1>Відео-плеєр</h1>
+	<h2>перегляд файлів і потоків</h2><br><br>
+    <div id="player"></div>
+    <script type="text/javascript">
+        var media = {
+            dataProvider: {
+                title: "Тест",
+                source: [{
+	            url: "http://194.165.46.178:18180/hls/transl.m3u8",
+                    contentType: "movie",
+                    width: 640,
+                    height: 360
+                }],
+                splashImages: [{
+                    url: "background.jpg",
+                    width: 640,
+                    height: 360
+                }]
+            }
+        };
+        var element = document.getElementById("player");
+        window.bigsoda.player.create(element, media);
+    </script>
+
+<!--    <div class="note">
+        <p>Read player on-line documentation</p>
+    </div> -->
+
+<form>
+  <p align="center">Що обираєте:</p>
+  <div align="center">
+    <input type="radio" id="translation" name="method" value="translation" checked>
+    <label for="translation">Live</label>
+
+    <input type="radio" id="record" name="method" value="record">
+    <label for="record">Record</label>
+
+    <button type="submit">Submit</button>
+  </div>
+</form>
+    <noscript>Your browser does not support JavaScript!</noscript>
+  </body>
+</html>
+
+
+
+

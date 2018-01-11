@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>video</title>
+ </head>
+ <body>
+<embed type="application/x-vlc-plugin"
+pluginspage="http://www.videolan.org"
+version="VideoLAN.VLCPlugin.2"
+width="1280"
+height="720"
+id="vlc"
+volume="25" />
+
+<script>
+var vlc = document.getElementById("vlc");
+vlc.playlist.add("udp://@95.188.88.178:1234/udp/225.54.223.71:5000", "MyTVChannel");
+vlc.playlist.play();
+vlc.video.deinterlace.enable("blend");
+</script> 
+ </body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+ <title>VLC plugin test page</title>
+	<meta charset="utf-8">
+</head>
+ <body>
+<div align="center">
+
+
+<script type="text/javascript">
+var ar = '16:9';
+var options=new Array(
+':http-caching=3000',
+':http-reconnect',
+'aspect-ratio='+ar
+);
+function init() { myvlc = new VLCObject("vlc", "660", "400");
+myvlc.write("player");
+play();
+}
+function play()
+{
+var vlc = document.getElementById("vlc");
+var f = document.getElementById('ch');
+var ch=f.options[f.selectedIndex].value;
+if(ch=='-1')
+{
+vlc.playlist.stop(); if(confirm("TV kanāls nav pieejams")) window.open("/login");
+}
+else
+{
+//vlc.playlist.stop();
+//vlc.playlist.items.clear();
+var id = vlc.playlist.add(ch, null, options );
+vlc.playlist.playItem(id)
+//vlc.playlist.play();
+}
+}
+function ch_asratio(as)
+{
+ar = as; vlc.video.aspectRatio = as;
+}
+//
+
+</script>
+
+<div align="center">
+<div id="player">
+<span style="font-weight: bold;">
+<embed height="400" id="vlc" name="vlc" pluginspage="http://www.videolan.org" target="URL" type="application/x-vlc-plugin" version="VideoLAN.VLCPlugin.2" width="660"></embed>
+</span>
+</div>
+</div>
+
+<div align="center">
+<span style="font-size: 12pt">
+<font color="#ffa500">
+<strong>
+<u>Выберите канал из списка:</u>
+</strong>
+</font>
+</span>
+<select id="ch" onchange="play()" size="1">
+<option selected="">Нажмите кнопочку -->></option>
+
+<optgroup label="Пакет 1">
+
+*********************************************************************************
+<!--Пакет каналов-->
+<option value="http://194.165.46.5:18009/play/a00l">НТВ+ Спорт</option>
+<option value="http://91.202.1.17:7777/udp/239.10.12.1:10102">НТВ+ Футбол</option>
+<option value="http://91.202.1.17:7777/udp/239.10.17.1:1404">НТВ+ Наш футбол</option>
+<option value="http://91.202.1.17:7777/udp/239.10.17.1:1403">НТВ+ Футбол 2</option>
+<option value="http://91.202.1.17:7777/udp/239.10.14.16:1234">НТВ+ Спорт Онлайн</option>
+<option value="http://91.202.1.17:7777/udp/239.10.17.1:1401">НТВ+ Теннис</option>
+<option value="http://91.202.1.17:7777/udp/239.10.17.1:1402">НТВ+ Баскетбол</option>
+<option value="http://91.202.1.17:7777/udp/239.10.17.1:1411">Спорт+</option>
+<option value="http://91.202.1.17:7777/udp/239.10.17.1:1405">Спорт Союз</option>
+<option value="http://91.202.1.17:7777/udp/239.10.10.1:1405">НТВ Футбол HD</option>
+
+***************************************************************************
+
+</optgroup>
+</select>
+</div>
+
+<div align="center">
+<input type="button" value="Play" onclick="vlc.playlist.play();">
+<input type="button" value="Pause" onclick="vlc.playlist.togglePause();">
+<input type="button" value="Stop" onclick="vlc.playlist.stop();">
+
+Звук:
+
+<input type="button" value="-" onclick="vlc.audio.volume+=(-10);">
+<input type="button" value="+" onclick="vlc.audio.volume+=(+10);">
+<input type="button" value="Mute" onclick="vlc.audio.toggleMute();">
+
+Видео:
+<input type="button" value="16:9" onclick="vlc.video.aspectRatio=(this.value);">
+<input type="button" value="16:10" onclick="vlc.video.aspectRatio=(this.value);">
+<input type="button" value="4:3" onclick="vlc.video.aspectRatio=(this.value);">
+<input type="button" value="*"onclick="vlc.video.deinterlace.enable('yadif2x');">
+<input type="button" value="*" onclick="vlc.video.deinterlace.disable();">
+<input type="button" value="Full" onclick="vlc.video.toggleFullscreen();">
+</div>
+</div>
+</body> 
+</html>
